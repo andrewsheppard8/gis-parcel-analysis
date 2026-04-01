@@ -1,3 +1,59 @@
+"""
+===============================================================================
+Script Name:       Single-Family Parcels by School District
+Author:            Andrew Sheppard
+Role:              GIS Solution Engineer
+Email:             andrewsheppard8@gmail.com
+Date Created:      2026-04-01
+Last Updated:      2026-04-01
+
+Purpose:
+--------
+This script analyzes and visualizes single-family dwelling parcels within 
+school districts. It demonstrates an end-to-end GIS workflow using Python, 
+GeoPandas, Matplotlib, and Folium.
+
+Key Features:
+-------------
+    - Loads and cleans parcel and school district shapefiles
+    - Filters parcels to include only single-family dwellings
+    - Performs spatial joins to associate parcels with school districts
+    - Aggregates parcel counts per district
+    - Exports results as CSV and a new shapefile
+    - Generates static choropleth maps using Matplotlib
+    - Generates interactive web maps using Folium
+
+Intended Audience:
+-----------------
+GIS analysts, developers, or portfolio reviewers interested in Python-based
+spatial analysis, mapping, and visualization workflows.
+
+Usage:
+------
+Adjust input/output paths as needed. Run in an environment with:
+    - Python 3.x
+    - geopandas
+    - matplotlib
+    - folium
+    - OS
+
+Outputs:
+--------
+- CSV: single_family_counts_by_district.csv
+- Shapefile: School_Districts_with_SF_Counts.shp
+- PNG: SF_Parcels_by_District.png
+- HTML: SF_Parcels_by_District_Map.html
+
+Notes/Future Improvements:
+--------------------------
+- Add support for additional parcel classes beyond single-family dwellings
+- Integrate interactive dashboards via Flask or Streamlit
+- Add unit tests for spatial join and aggregation functions
+- Automate CRS validation and reprojection checks
+- Include automated validation of raw shapefiles
+
+===============================================================================
+"""
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import folium

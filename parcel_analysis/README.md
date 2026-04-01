@@ -34,29 +34,15 @@ The workflow demonstrates end-to-end GIS processing including spatial joins, CRS
 
 ### Technologies \& Libraries
 
-###### Python 3.11+
+\- Python 3.11+
 
-GeoPandas
+\- GeoPandas – Geospatial data processing; relies on Shapely for geometry operations (centroids, spatial joins, intersections)
 
-&#x09;geospatial data processing
+\- Matplotlib – Static mapping and choropleth visualization
 
-Matplotlib
+\- Folium – Interactive web mapping with choropleth and tooltips
 
-&#x20;	static mapping
-
-Folium
-
-&#x09;interactive web mapping
-
-Shapely
-
-&#x09;geometry operations
-
-OS
-
-&#x09;file path management
-
-
+\- OS – File path and directory management
 
 ### Features
 
@@ -114,9 +100,7 @@ project-root/
 
 │
 
-├─ scripts/
-
-│   └─ gis\_parcel\_analysis.py    # Main Python script
+├─ gis\_parcel\_analysis.py    # Main Python script
 
 │
 
