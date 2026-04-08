@@ -1,130 +1,68 @@
-# Single Family Parcels by School District
+# AGOL Feature Service Publisher
 
 
 
 ## Project Title
 
-Single Family Parcels by School District – GIS Analysis \& Visualization
+Publish Feature Class to ArcGIS Online – GIS Data Management
 
 
 
 ### Description
 
-This project analyzes and visualizes single-family dwelling parcels within school districts. It uses Python, GeoPandas, and Folium to:
+This Python script automates publishing a feature class from an ArcGIS Pro project to ArcGIS Online as a hosted feature layer.
 
 
 
-Load and clean parcel and school district shapefiles
-
-Filter parcels for “Single Family Dwelling” class
-
-Perform spatial joins with school districts
-
-Aggregate single-family parcel counts per district
-
-Export results to CSV and a new shapefile
-
-Visualize results with static maps (Matplotlib) and interactive web maps (Folium)
+It handles tasks that are typically manual and time-consuming, including clearing layers, deleting existing services, generating a timestamped service name, creating a Web Layer Sharing Draft, staging the service, and uploading to ArcGIS Online.
 
 
 
-The workflow demonstrates end-to-end GIS processing including spatial joins, CRS management, aggregation, and both static and web visualization.
+This version of the tool is interactive, designed to run within ArcGIS Pro. A fully headless version for automated batch publishing is planned for future development.
 
 
-
-### Technologies \& Libraries
-
-\- Python 3.11+
-
-\- GeoPandas – Geospatial data processing; relies on Shapely for geometry operations (centroids, spatial joins, intersections)
-
-\- Matplotlib – Static mapping and choropleth visualization
-
-\- Folium – Interactive web mapping with choropleth and tooltips
-
-\- OS – File path and directory management
 
 ### Features
 
-###### Data Processing
+Clears existing layers from a map before publishing.
 
-&#x09;Filters parcels to only single-family dwellings
+Deletes any existing AGOL services or service definitions with the same name.
 
-&#x09;Ensures coordinate reference system (CRS) alignment
+Creates timestamped service names to avoid conflicts.
 
-&#x09;Aggregates parcel counts per school district
+Generates Web Layer Sharing Drafts and stages them automatically.
 
-###### Outputs
+Uploads services to ArcGIS Online with logging and error handling.
 
-&#x09;CSV of single-family parcel counts per district
-
-&#x09;Shapefile with counts merged into school districts
-
-&#x09;Static choropleth map (PNG)
-
-&#x09;Interactive web map (HTML)
-
-###### CRS Handling
-
-&#x09;Projected for centroid calculations
-
-&#x09;Converted back to WGS84 for web mapping
+Logs progress and errors to a timestamped log file in the scratch folder.
 
 
 
-### File Structure
+### Usage
+
+Edit the run block at the bottom of the script with your project paths and service details
 
 
-
-project-root/
-
-│
-
-├─ data/
-
-│   ├─ raw/                      # Original shapefiles
-
-│   │   ├─ PARCELS\_CREST.shp
-
-│   │   └─ School\_Districts.shp
-
-│   └─ output/                   # Generated files
-
-│       ├─ single\_family\_counts\_by\_district.csv
-
-│       ├─ School\_Districts\_with\_SF\_Counts.shp
-
-│       ├─ SF\_Parcels\_by\_District.png
-
-│       └─ SF\_Parcels\_by\_District\_Map.html
-
-│
-
-├─ gis\_parcel\_analysis.py    # Main Python script
-
-│
-
-└─ README.md
 
 
 
 ### Notes/Future Improvements
 
-Could add multiple parcel classes as filter options
+Fully headless mode for automated batch publishing.
 
-Could integrate Flask or Streamlit for an interactive app interface
+Configurable portal URL or hosting server.
 
-Add unit tests for spatial join and aggregation functions
+Optionally store logs in a permanent folder outside scratch.
 
-Include automated download or validation of raw shapefiles
+Robust retry logic for AGOL API operations.
+
+Notifications via email or Teams when publishing completes.
 
 
 
 ### Author
 
-Andrew Sheppard – GIS Developer / Python Enthusiast
-
-GitHub: https://github.com/andrewsheppard8
+Andrew Sheppard – GIS Developer
 
 Email: andrewsheppard8@gmail.com
 
