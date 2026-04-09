@@ -1,38 +1,32 @@
-# AGOL User Audit Tool (ArcGIS API for Python)
+# AGOL Audit Toolkit (ArcGIS API for Python)
 
+###### 
 
+###### A modular auditing toolkit for analyzing ArcGIS Online (AGOL) content at both the user and organization level using the ArcGIS API for Python.
 
-A lightweight auditing tool for inspecting ArcGIS Online (AGOL) user content using the ArcGIS API for Python.
+###### 
 
+###### This project demonstrates multiple execution patterns—from simple scripts to automation-ready CLI workflows—while providing actionable insights into content usage, storage, and data quality.
 
+# 
 
-This project demonstrates multiple execution patterns—from simple scripts to automation-ready CLI workflows—while providing useful insights into a user's AGOL content.
+# 🔍 What This Toolkit Does
 
-
-
-## 🔍 What This Tool Does
-
-
-
-###### Connects to ArcGIS Online
+#### User-Level Auditing
 
 
 
 ###### Retrieves all items owned by a user
 
-
-
-###### Summarizes:
+###### Calculates:
 
 Total item count
 
-Storage usage (approximate)
+Approximate storage usage
+
+###### Provides:
 
 Item type breakdown
-
-
-
-###### Identifies:
 
 Largest items
 
@@ -42,33 +36,63 @@ Stale items (not modified in 1+ year)
 
 Items missing descriptions
 
-Exports results to a timestamped .txt report
+
+
+#### Organization-Level Auditing (Admin)
 
 
 
-## 🧩 Execution Patterns
+###### Iterates through all users in an AGOL organization
+
+###### Calculates per-user:
+
+Item counts
+
+Storage usage
+
+Identifies:
+
+Top users by storage
+
+Users with no content
+
+Provides high-level organizational metrics
 
 
 
-This repo intentionally includes three different approaches to show flexibility and real-world usage:
+# 🧩 Execution Patterns
 
 
 
-###### 1\. Hardcoded Script
+###### This repository intentionally includes multiple implementations to demonstrate how GIS automation evolves from simple scripts into scalable tools.
+
+
+
+##### 1\. Hardcoded Script
+
+
 
 Credentials stored directly in script
 
 Best for quick testing and learning
 
-Minimal setup
+Minimal setup required
 
 
 
-###### 2\. Config-Based Script
+Use Case:
 
-Credentials stored in a config.ini file
+Rapid prototyping or one-off analysis
 
-More secure and reusable
+
+
+##### 2\. Config-Based Script
+
+
+
+Credentials stored in an external config.ini file
+
+More secure and reusable than hardcoding
 
 Suitable for repeatable workflows
 
@@ -88,17 +112,25 @@ password = your\_password
 
 
 
-###### 3\. CLI (Command Line Interface)
+Use Case:
+
+Reusable scripts in controlled environments
+
+
+
+##### 3\. CLI Script (Automation-Ready)
+
+
 
 Supports command-line arguments
 
-Ideal for automation (Task Scheduler, pipelines)
+Designed for automation and scheduling
 
-Most flexible and scalable approach
+Flexible execution patterns
 
 
 
-Example usage:
+Example Usage:
 
 
 
@@ -106,91 +138,121 @@ python agol\_audit\_cli.py --summary-only
 
 
 
+ArcGIS Pro Python Environment (Recommended):
 
 
-## 📄 Output
+
+\& "C:\\Program Files\\ArcGIS\\Pro\\bin\\Python\\envs\\arcgispro-py3\\python.exe" "C:\\path\\agol\_audit\_cli.py" --summary-only
+
+
+
+Use Case:
+
+Task Scheduler, pipelines, automation workflows
+
+
+
+##### 4\. Organization Admin Audit
+
+
+
+Requires AGOL administrative privileges
+
+Audits all users in the organization
+
+Provides organization-wide metrics
+
+
+
+Outputs:
+
+
+
+Total users
+
+Total items across org
+
+Total storage usage
+
+Top users by storage
+
+Users with no content
+
+
+
+Use Case:
+
+Governance, storage optimization, platform oversight
+
+
+
+# 📄 Output
 
 
 
 ###### All scripts generate a timestamped report:
 
-
-
 agol\_report\_YYYYMMDD\_HHMMSS.txt
+
+
+
+###### Admin script generates:
+
+agol\_org\_audit\_YYYYMMDD\_HHMMSS.txt
 
 
 
 ###### Reports include:
 
-
-
-Full inventory of items
-
 Summary statistics
 
-Data quality indicators (missing descriptions, stale items)
+Detailed item/user breakdowns
 
-⚙️ Requirements
-
-Python 3.x
-
-ArcGIS API for Python
+Data quality indicators
 
 
 
-Install dependencies:
+# 🚀 Why This Project Matters
 
 
 
-pip install -r requirements.txt
+##### This toolkit demonstrates:
 
 
 
-## 🚀 Why This Project Matters
+Multiple authentication and execution patterns
+
+Secure credential management practices
+
+Scalable automation design
+
+Real-world AGOL auditing workflows
 
 
 
-###### This project demonstrates:
+# 🔮 Future Improvements
 
 
 
-Multiple approaches to authentication and configuration
+CSV / Excel export for reporting
 
-Scalable scripting patterns (hardcoded → config → CLI)
+Organization-wide credit usage tracking
 
-Practical AGOL content auditing
+Filtering options (e.g., stale-only, large items only)
 
-Automation-ready design
+Parallel processing for large organizations
 
+Dashboard integration (ArcGIS Dashboards / Streamlit)
 
-
-It reflects real-world GIS workflows where scripts evolve from quick utilities into maintainable, reusable tools.
-
-
-
-## 🔮 Future Improvements
+Notification system (email / Teams)
 
 
 
-Organization-wide admin audit (all users)
-
-CSV / Excel export
-
-Credit usage estimation
-
-Dashboard integration
-
-Automated scheduling
-
-
-
-## 👤 Author
+# 👤 Author
 
 
 
 Andrew Sheppard
 
-GIS Developer | Solutions Engineer | Automation SpecialistGitHub: https://github.com/andrewsheppard8
-
-Email: andrewsheppard8@gmail.com
+GIS Developer | Solutions Engineer | Automation Specialist
 
