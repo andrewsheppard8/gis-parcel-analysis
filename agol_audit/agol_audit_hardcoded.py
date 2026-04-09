@@ -1,40 +1,67 @@
-import configparser
-import os
+"""
+===============================================================================
+Script Name:       AGOL User Audit (Hardcoded)
+Author:            Andrew Sheppard
+Role:              GIS Developer | Solutions Engineer
+Email:             andrewsheppard8@gmail.com
+Date Created:      2026-04-09
+
+Description:
+-------------
+This script connects to ArcGIS Online using hardcoded credentials and performs
+a basic audit of the user's content.
+
+    - Authenticates to AGOL using embedded credentials
+    - Retrieves all items owned by the user
+    - Calculates total item count and approximate storage usage
+    - Provides an item type breakdown
+    - Identifies:
+        * Largest items
+        * Recently modified items
+        * Stale items (not modified in 1+ year)
+        * Items missing descriptions
+    - Outputs results to console and exports a timestamped .txt report
+
+This version is intended for **quick testing, learning, and rapid execution**.
+
+Limitations:
+-------------
+- Credentials are stored directly in the script (not secure)
+- Not suitable for shared environments or production use
+
+Future Improvements:
+--------------------
+- Replace hardcoded credentials with config file or environment variables
+- Add CLI argument support for flexible execution
+- Expand reporting options (CSV, Excel)
+- Extend to support organization-wide auditing
+
+===============================================================================
+"""
+
 from arcgis.gis import GIS
 import logging
 from datetime import datetime
 from collections import Counter
-
-# ==============================
-# LOGGING BUFFER (for TXT export)
-# ==============================
-log_output = []
-
-def log(msg=""):
-    print(msg)
-    log_output.append(str(msg))  # capture for export
-
+import os
 
 # ==============================
 # CONFIG
 # ==============================
-def load_config(config_path):
-    if not os.path.exists(config_path):
-        raise FileNotFoundError(f"Config file not found: {config_path}")
+PORTAL_URL = "portal_url" #UPDATE
+USERNAME = "username" #UPDATE
+PASSWORD = "password" #UPDATE
 
-    config = configparser.ConfigParser()
-    config.read(config_path)
+# ==============================
+# LOGGING BUFFER (for TXT export)
+# ==============================
+logging.basicConfig(level=logging.INFO)
 
-    return {
-        "portal_url": config["AGOL"]["portal_url"],
-        "username": config["AGOL"]["username"],
-        "password": config["AGOL"]["password"]
-    }
+log_output = []
 
-CONFIG_PATH = os.path.join(
-    os.path.dirname(__file__),
-    "config.ini"
-)
+def log(msg=""):
+    print(msg)
+    log_output.append(str(msg))
 
 
 # ==============================
@@ -59,13 +86,7 @@ def export_report():
 # ==============================
 def inspect_agol_content():
     log("Connecting to AGOL...")
-    creds = load_config(CONFIG_PATH)
-
-    gis = GIS(
-        creds["portal_url"],
-        creds["username"],
-        creds["password"]
-    )
+    gis = GIS(PORTAL_URL, USERNAME, PASSWORD)
 
     # ------------------------------
     # 1. Confirm user

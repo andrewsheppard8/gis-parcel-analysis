@@ -1,3 +1,62 @@
+"""
+===============================================================================
+Script Name:       AGOL User Audit (CLI)
+Author:            Andrew Sheppard
+Role:              GIS Developer | Solutions Engineer
+Email:             andrewsheppard8@gmail.com
+Date Created:      2026-04-09
+
+Description:
+-------------
+This script provides a command-line interface (CLI) for auditing ArcGIS Online
+user content using the ArcGIS API for Python.
+
+    - Authenticates to AGOL (via config file or parameters)
+    - Retrieves all items owned by the user
+    - Calculates total item count and approximate storage usage
+    - Provides an item type breakdown
+    - Identifies:
+        * Largest items
+        * Recently modified items
+        * Stale items (not modified in 1+ year)
+        * Items missing descriptions
+    - Supports command-line flags for flexible execution
+    - Exports results to a timestamped .txt report
+
+Example Usage:
+---------------
+Run via standard Python:
+
+    python agol_audit_cli.py --summary-only
+
+Run using the ArcGIS Pro Python environment (recommended):
+
+    & "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" "C:\path\agol_audit_cli.py" --summary-only (optional)
+
+Notes:
+-------
+- It is recommended to execute this script using the ArcGIS Pro Python interpreter,
+  as it ensures the required ArcGIS API for Python and dependencies are available.
+- The CLI version is designed for automation, scheduling, and advanced workflows,
+  including integration with Windows Task Scheduler or CI/CD pipelines.
+
+
+Key Features:
+--------------
+- Flexible execution via command-line arguments
+- Automation-ready design
+- Scalable for future enhancements
+
+Future Improvements:
+--------------------
+- Add additional CLI flags (e.g., --stale-only, --top-n)
+- Support organization-wide auditing (admin mode)
+- Integrate logging to file or external monitoring systems
+- Add notification support (email, Teams, etc.)
+
+===============================================================================
+"""
+
 from arcgis.gis import GIS
 import configparser
 import os
