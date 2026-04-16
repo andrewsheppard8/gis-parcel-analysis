@@ -1,3 +1,5 @@
+<!-- Minimal OAuth pattern example for embedding ArcGIS Online secured web maps -->
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -40,10 +42,10 @@
             $arcgis.import("@arcgis/core/identity/IdentityManager.js")
         ]);
 
-        const portalUrl = "https://YOUR-ORG.maps.arcgis.com"; // Replace with your ArcGIS Online or Enterprise portal URL
+        const portalUrl = "https://YOUR-ORG.maps.arcgis.com"; // Replace with your portal
 
         const info = new OAuthInfo({
-            appId: "YOUR_CLIENT_ID"; // Replace with Client ID generated on AGOL
+            appId: "YOUR_CLIENT_ID", // Replace with AGOL app client ID
             portalUrl,
             popup: false,
             flowType: "auto"
@@ -62,7 +64,6 @@
         }
 
         authenticate();
-
     </script>
 </head>
 
@@ -74,7 +75,7 @@
 
     <div class="container">
         <div class="map-box">
-            <arcgis-map item-id="YOUR_MAP_ITEM_ID";> // Replace with Item ID generated in AGOL
+            <arcgis-map item-id="YOUR_MAP_ITEM_ID">
                 <arcgis-legend slot="bottom-right"></arcgis-legend>
             </arcgis-map>
         </div>
