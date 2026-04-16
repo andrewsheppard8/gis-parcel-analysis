@@ -40,10 +40,10 @@
             $arcgis.import("@arcgis/core/identity/IdentityManager.js")
         ]);
 
-        const portalUrl = "PORTAL URL";
+        const portalUrl = "https://YOUR-ORG.maps.arcgis.com"; // Replace with your ArcGIS Online or Enterprise portal URL
 
         const info = new OAuthInfo({
-            appId: "CLIENT ID",
+            appId: "YOUR_CLIENT_ID"; // Replace with Client ID generated on AGOL
             portalUrl,
             popup: false,
             flowType: "auto"
@@ -74,7 +74,7 @@
 
     <div class="container">
         <div class="map-box">
-            <arcgis-map item-id="MAP ID">
+            <arcgis-map item-id="YOUR_MAP_ITEM_ID";> // Replace with Item ID generated in AGOL
                 <arcgis-legend slot="bottom-right"></arcgis-legend>
             </arcgis-map>
         </div>
