@@ -1,0 +1,84 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OAuth Embedded Map Example</title>
+
+    <script type="module" src="https://js.arcgis.com/5.0/"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .header {
+            padding: 12px 16px;
+            background: #1f2937;
+            color: white;
+            font-size: 16px;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        .map-box {
+            height: 90vh;
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+
+    <script type="module">
+        const [OAuthInfo, IdentityManager] = await Promise.all([
+            $arcgis.import("@arcgis/core/identity/OAuthInfo.js"),
+            $arcgis.import("@arcgis/core/identity/IdentityManager.js")
+        ]);
+
+        const portalUrl = "PORTAL URL";
+
+        const info = new OAuthInfo({
+            appId: "CLIENT ID",
+            portalUrl,
+            popup: false,
+            flowType: "auto"
+        });
+
+        IdentityManager.registerOAuthInfos([info]);
+
+        async function authenticate() {
+            try {
+                await IdentityManager.checkSignInStatus(portalUrl);
+                console.log("Silent login success");
+            } catch (e) {
+                console.log("Login required");
+                await IdentityManager.getCredential(portalUrl);
+            }
+        }
+
+        authenticate();
+
+    </script>
+</head>
+
+<body>
+
+    <div class="header">
+        Embedded ArcGIS Map (OAuth Protected)
+    </div>
+
+    <div class="container">
+        <div class="map-box">
+            <arcgis-map item-id="MAP ID">
+                <arcgis-legend slot="bottom-right"></arcgis-legend>
+            </arcgis-map>
+        </div>
+    </div>
+
+</body>
+</html>
